@@ -1,0 +1,29 @@
+package com.socket;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SimpleServer {
+
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		ServerSocket ss=new ServerSocket(10003);
+		while(true){
+			Socket s=ss.accept();
+			OutputStream os=s.getOutputStream();
+			PrintWriter ow=new PrintWriter(os);
+			os.write(" it is sent by server 2 !".getBytes("utf-8"));
+			ow.write("is is sent by server by PrintWriter!");
+			os.close();
+			s.close();
+		}
+
+	}
+
+}
